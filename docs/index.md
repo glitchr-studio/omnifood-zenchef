@@ -12,6 +12,23 @@ holds the restaurant's credentials and a configured client, and refuses every re
 
 ## Configuration
 
+```php
+use Omnifood\Zenchef\ZenchefPlatformFactory;
+use Symfony\Component\HttpClient\HttpClient;
+
+$zenchef = (new ZenchefPlatformFactory(HttpClient::create()))->create([
+    'token' => getenv('ZENCHEF_TOKEN') ?: null,                  // Settings > Partners: "Zenchef token"
+    'restaurant_id' => getenv('ZENCHEF_RESTAURANT_ID') ?: null,  // Settings > Partners
+    'base_uri' => getenv('ZENCHEF_BASE_URI') ?: null,            // from Zenchef's documentation
+    'headers' => [],                                             // from it too: ['<header>' => '{token}', '<header>' => '{restaurant_id}']
+]);
+```
+
+The factory takes any `HttpClientInterface` (the application's, a `MockHttpClient` in a test) and
+makes its own when given none; several platforms go in a `Registry`
+([the core's installation](https://github.com/glitchr-studio/omnifood/blob/1.x/docs/installation.md)).
+In a Symfony application, the same options in `config/packages/omnifood.yaml`:
+
 ```yaml
 omnifood:
     platforms:

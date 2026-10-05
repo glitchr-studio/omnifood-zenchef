@@ -10,6 +10,22 @@ address, nor its paths, fields, statuses, nor how a webhook is signed.
 > **Not verified against the live API (non vérifié en réel)**, and nothing guessed: every
 > reservation call throws `NotSupportedException` until the documentation is in hand.
 
+```php
+use Omnifood\Zenchef\ZenchefPlatformFactory;
+use Symfony\Component\HttpClient\HttpClient;
+
+$zenchef = (new ZenchefPlatformFactory(HttpClient::create()))->create([
+    'token' => getenv('ZENCHEF_TOKEN') ?: null,                  // Settings > Partners: "Zenchef token"
+    'restaurant_id' => getenv('ZENCHEF_RESTAURANT_ID') ?: null,  // Settings > Partners
+    'base_uri' => getenv('ZENCHEF_BASE_URI') ?: null,            // from Zenchef's documentation
+    'headers' => [],                                             // from it too: ['<header>' => '{token}', '<header>' => '{restaurant_id}']
+]);
+```
+
+Plain PHP, no framework needed: the factory takes any `HttpClientInterface` - the application's, a
+`MockHttpClient` in a test - and makes its own when given none. In a Symfony application, the same
+options under `omnifood.platforms` ([the bundle](https://github.com/glitchr-studio/omnifood/blob/1.x/docs/symfony.md)):
+
 ```yaml
 omnifood:
     platforms:
