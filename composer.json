@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Omnifood Zenchef: the restaurant's credentials and a client ready for Zenchef's partner API, whose documentation Zenchef sends on request - every reservation call refused until it is public.",
     "keywords": ["restaurant", "reservations", "booking", "zenchef", "omnifood"],
-    "license": "LGPL-3.0-or-later",
+    "license": "MIT",
     "authors": [{"name": "Marco Meyer", "email": "marco.meyer@glitchr.io"}],
     "require": {
         "php": ">=8.2",

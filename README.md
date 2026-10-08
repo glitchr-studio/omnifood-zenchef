@@ -65,4 +65,4 @@ import, only what changed since the last call.
 - Its **token** and **restaurant id**: Zenchef, Settings > Partners.
 - To become an official partner: https://www.zenchef.com/integrations.
 
-License: LGPL-3.0-or-later.
+License: MIT since 2026-10-09; earlier versions remain published under LGPL-3.0-or-later.
